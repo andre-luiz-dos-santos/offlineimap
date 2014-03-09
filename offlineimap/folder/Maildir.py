@@ -271,8 +271,8 @@ class MaildirFolder(BaseFolder):
             else:
                 raise
 
-        file = os.fdopen(fd, 'wt')
-        file.write(content)
+        file = os.fdopen(fd, 'wb')
+        file.write(content.replace("\r\n", "\n"))
         # Make sure the data hits the disk
         file.flush()
         if self.dofsync:
